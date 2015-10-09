@@ -3,21 +3,18 @@
  */
 'use strict'
 
-eventsApp.controller("EditEventController", function($scope) {
+eventsApp.controller("EditEventController", function($scope, eventData) {
     $scope.saveEvent = function(event, newEventForm) {
         console.log(newEventForm);
         if(newEventForm.$valid) {
-            window.alert("Event " + event.name + "saved!");
+            eventData.save(event)
+                .$promise
+                .then(function(response) {console.log('success', response);})
+                .catch(function(response) {console.log('failure', response)});
         }
-    }
+    };
 
     $scope.cancelEvent = function() {
-        /*event.name = "";
-        event.date = "";
-        event.time = "";
-        event.location.address = "";
-        event.location.city = "";
-        event.location.state = "";*/
-        window.location="/EventDetails.html";
+         window.location="/EventDetails.html";
     }
 });

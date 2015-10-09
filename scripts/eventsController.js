@@ -10,6 +10,7 @@ module.exports.get  = function(req, res) {
 };
 
 module.exports.save  = function(req, res) {
+    //console.writeln("Inside save method");
     var event = req.body;
     fs.writeFileSync('../app/data/event/' + req.params.id + '.json', JSON.stringify(event));
     res.send(event);
